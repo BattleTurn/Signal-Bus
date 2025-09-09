@@ -1,0 +1,14 @@
+{
+    "name": "SignalBus.Runtime",
+    "rootNamespace": "BattleTurn.SignalBus",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
