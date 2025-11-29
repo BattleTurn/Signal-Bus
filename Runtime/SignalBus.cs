@@ -6,9 +6,12 @@ namespace BattleTurn.SignalBus
     /// <summary>
     /// Container for signal pipes. Use Subscribe/Unsubscribe/Fire with Action<T>.
     /// </summary>
-    public class SignalBus
+    [Serializable]
+    public sealed class SignalBus
     {
         private readonly Dictionary<Type, object> _pipes = new();
+
+        public IReadOnlyDictionary<Type, object> DebugGetPipes() => _pipes;
 
         public void Subscribe<T>(Action<T> handler)
         {

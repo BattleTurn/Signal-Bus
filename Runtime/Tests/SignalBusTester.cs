@@ -7,7 +7,7 @@ namespace BattleTurn.SignalBus
     /// </summary>
     public class SignalBusTester : MonoBehaviour
     {
-        private SignalBus _bus;
+        [SerializeField] private SignalBus _bus;
 
         private int _counter;
 

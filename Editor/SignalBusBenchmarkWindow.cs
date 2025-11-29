@@ -8,7 +8,7 @@ namespace BattleTurn.SignalBus.Editor
     /// <summary>
     /// Editor window for benchmarking the signal bus performance.
     /// </summary>
-    public class SignalBusBenchmarkWindow : EditorWindow, ISignalListener<int>
+    public class SignalBusBenchmarkWindow : EditorWindow
     {
         private const int Iterations = 100000;
         private string _result = "";
