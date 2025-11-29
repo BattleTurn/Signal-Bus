@@ -32,12 +32,11 @@ namespace BattleTurn.SignalBus.Editor
         private void RunBenchmark()
         {
             var bus = new SignalBus();
-            var pipe = bus.For<int>();
 
-            pipe.Subscribe(this);
+            bus.Subscribe<int>(OnSignal);
 
             // Warmup
-            pipe.Fire(123);
+            bus.Fire(123);
 
             // Force GC before test
             System.GC.Collect();
@@ -49,7 +48,7 @@ namespace BattleTurn.SignalBus.Editor
             var sw = Stopwatch.StartNew();
             for (int i = 0; i < Iterations; i++)
             {
-                pipe.Fire(i);
+                bus.Fire(i);
             }
             sw.Stop();
 

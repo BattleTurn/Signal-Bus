@@ -4,25 +4,48 @@ using System.Collections.Generic;
 namespace BattleTurn.SignalBus
 {
     /// <summary>
-    /// Container for signal pipes. Use <see cref="For{T}"/> to get a pipe for a specific signal type.
+    /// Container for signal pipes. Use Subscribe/Unsubscribe/Fire with Action<T>.
     /// </summary>
     public class SignalBus
     {
         private readonly Dictionary<Type, object> _pipes = new();
 
-        public SignalPipe<T> For<T>()
+        public void Subscribe<T>(Action<T> handler)
         {
-            if (_pipes.TryGetValue(typeof(T), out var obj))
+            GetPipe<T>().Subscribe(handler);
+        }
+
+        public void Unsubscribe<T>(Action<T> handler)
+        {
+            GetPipe<T>().Unsubscribe(handler);
+        }
+
+        public void Subscribe(Action handler)
+        {
+            GetPipe<object>().Subscribe(handler);
+        }
+
+        public void Unsubscribe(Action handler)
+        {
+            GetPipe<object>().Unsubscribe(handler);
+        }
+
+        public void Fire<T>(T signal)
+        {
+            GetPipe<T>().Fire(signal);
+        }
+
+        public void Clear() => _pipes.Clear();
+
+        private SignalPipe<T> GetPipe<T>()
+        {
+            var key = typeof(T);
+            if (_pipes.TryGetValue(key, out var obj))
                 return (SignalPipe<T>)obj;
 
             var pipe = new SignalPipe<T>();
-            _pipes[typeof(T)] = pipe;
+            _pipes[key] = pipe;
             return pipe;
         }
-
-        /// <summary>
-        /// Clear all pipes (for example when unloading a scene).
-        /// </summary>
-        public void Clear() => _pipes.Clear();
     }
 }

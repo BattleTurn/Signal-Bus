@@ -5,12 +5,12 @@ namespace BattleTurn.SignalBus
     /// <summary>
     /// Simple MonoBehaviour that logs PlayerHit signals for testing.
     /// </summary>
-    public class HitLogger : MonoBehaviour, ISignalListener<PlayerHit>
+    public class HitLogger : MonoBehaviour
     {
         private SignalBus _signalBus = new SignalBus();
 
-        void OnEnable() => _signalBus.For<PlayerHit>().Subscribe(this);
-        void OnDisable() => _signalBus.For<PlayerHit>().Unsubscribe(this);
+        void OnEnable() => _signalBus.Subscribe<PlayerHit>(OnSignal);
+        void OnDisable() => _signalBus.Unsubscribe<PlayerHit>(OnSignal);
 
         public void OnSignal(PlayerHit signal)
         {

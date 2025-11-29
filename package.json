@@ -1,14 +1,16 @@
 {
-  "name": "signal-bus",
+  "name": "battle_turn.signal-bus",
   "displayName": "Signal Bus",
   "version": "1.0.0",
-  "unity": "2018.4",
+  "unity": "2022.4",
   "description": "Signal Bus is a lightweight event bus implementation for Unity.",
-  "keywords": [ "event", "bus", "messaging" ],
+  "keywords": [
+    "event",
+    "bus",
+    "messaging"
+  ],
   "category": "editor extensions",
-  "dependencies": {},
   "author": {
     "name": "Echo Of Steel"
-  },
-  "hideInEditor": false
+  }
 }
