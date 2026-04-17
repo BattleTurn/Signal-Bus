@@ -23,14 +23,14 @@ namespace BattleTurn.SignalBus
             GetPipe<T>().Unsubscribe(handler);
         }
 
-        public void Subscribe(Action handler)
+        public void Subscribe<T>(Action handler)
         {
-            GetPipe<object>().Subscribe(handler);
+            GetPipe<T>().Subscribe(handler);
         }
 
-        public void Unsubscribe(Action handler)
+        public void Unsubscribe<T>(Action handler)
         {
-            GetPipe<object>().Unsubscribe(handler);
+            GetPipe<T>().Unsubscribe(handler);
         }
 
         public void Fire<T>(T signal)
